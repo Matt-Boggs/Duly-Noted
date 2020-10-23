@@ -60,6 +60,11 @@ app.post("api/notes", (req, res) => {
     fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
     res.json(archNotes)
 })  
+//  ======== DELETE ================
+
+app.delete("/api/notes:id", (req, res) => {
+    
+})
 // ============== Listener ================
 
 app.listen(port, () => {
