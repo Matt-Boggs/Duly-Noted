@@ -24,7 +24,7 @@ app.get("api/notes", (req, res) => {
 
 app.get("api/notes/:id", (req, res) => {
     let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
-    res.json(archNotes[Number(req.params.id)])
+    res.json(archNotes[(req.params.id)])
 })
 
 
