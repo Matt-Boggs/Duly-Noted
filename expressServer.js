@@ -12,9 +12,9 @@ app.use(express.json())
 
 // ======== Routes =================
 app.get("/", (req, res) => {
-    console.log("found me")
+    res.sendFile(path.join(mainDir, "index.html"))
 })
-app.get('/notes', (req, res) => {
+app.get("/notes", (req, res) => {
   res.sendFile(path.join(mainDir, "notes.html"))
 })
 
@@ -23,8 +23,9 @@ app.get("api/notes", (req, res) => {
 })
 
 app.get("api/notes/:id", (req, res) => {
-    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
-    res.json(archNotes[(req.params.id)])
+    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    console.log(archNotes);
+    res.json(archNotes[Number(req.params.id)]);
 })
 
 
@@ -40,28 +41,28 @@ app.get("*", (req, res) => {
 
 app.post("api/notes", (req, res) => {
     let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
-    let newEntry = req.body
-    let thisID = (archNotes.length).toString()
-    newEntry.id = thisID
-    archNotes.push(newEntry)
+    let newEntry = req.body;
+    let thisID = (archNotes.length).toString();
+    newEntry.id = thisID;
+    archNotes.push(newEntry);
 
     fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
-    res.json(archNotes)
+    res.json(archNotes);
 })  
 //  ======== DELETE ================
 
 app.delete("/api/notes:id", (req, res) => {
     let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
-    let delID = req.params.id
-    let newID = 0
+    let delID = req.params.id;
+    let newID = 0;
     archNotes = archNotes.filter(target => {
-        return target.id != delID
+        return target.id != delID;
     })
     for (target of archNotes){
-        target.id = newID.toString()
-        newID++
+        target.id = newID.toString();
+        newID++;
     }
-    fs.writeFileSync("./db/db.json", JSON.stringify(archNotes))
+    fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
     res.json(archNotes)
 })
 // ============== Listener ================
