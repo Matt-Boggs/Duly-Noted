@@ -1,4 +1,6 @@
 # Duly Noted
+ ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 
 ## Info: 
 This application allows the user to input and save notes, using express to make a server
@@ -12,13 +14,12 @@ This application allows the user to input and save notes, using express to make 
  6.[Questions](#Questions)
 
 ### Installation:
- 1. Clone this repo
- 2. Run npm install
- 3. Run node index.js
+Application is hosted on heroku, so there is no need to install
+https://safe-hamlet-41372.herokuapp.com/
 
 
 ### Usage:
- This is a step by step guided process for making a readme, answer all the questions presented, and at the end you will have a readme generated for you with the information that was entered!
+ Simply open using the provided heroku link, click on "Get Started", and start taking notes! clicking the pencil icon will start a new note, and after entering a title and the content for your note, click the save icon to add it to your list of notes. within that list, simply click on the note you'd like to look at, or on the trash icon on the right of the note to delete it.
 
 #### In Use:
 ![Notes](./public/assets/images/notetaking.gif)
@@ -26,7 +27,6 @@ This application allows the user to input and save notes, using express to make 
 
 ### License:
  This project is licensed under the MIT license.
- ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ### Contributing:
 Refactoring of the code is always appreciated
