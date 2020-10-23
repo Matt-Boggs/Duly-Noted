@@ -1,25 +1,25 @@
-const express = require('express')
-const path = require("path")
-const fs = require("fs")
-const app = express()
-const PORT = process.env.PORT || 3000
-const mainDir = path.join(__dirname, "/public")
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const app = express();
+const PORT = process.env.PORT || 6969
+const mainDir = path.join(__dirname, "/public");
 
-app.use(express.static('public'))
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 
 // ======== Routes =================
 app.get("/", (req, res) => {
-    res.sendFile(path.join(mainDir, "index.html"))
+    res.sendFile(path.join(mainDir, "index.html"));
 })
 app.get("/notes", (req, res) => {
-  res.sendFile(path.join(mainDir, "notes.html"))
+  res.sendFile(path.join(mainDir, "notes.html"));
 })
 
 app.get("api/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "/db/db.json"))
+    res.sendFile(path.join(__dirname, "./db/db.json"));
 })
 
 app.get("api/notes/:id", (req, res) => {
@@ -34,13 +34,13 @@ app.get("api/notes/:id", (req, res) => {
 
 // Placed at the bottom so the wildcard doesnt trigger first
 app.get("*", (req, res) => {
-    res.sendFile(path.join(mainDir, "index.html"))
+    res.sendFile(path.join(mainDir, "index.html"));
 })
 
 // ======== POST ===============
 
 app.post("api/notes", (req, res) => {
-    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
+    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let newEntry = req.body;
     let thisID = (archNotes.length).toString();
     newEntry.id = thisID;
@@ -51,8 +51,8 @@ app.post("api/notes", (req, res) => {
 })  
 //  ======== DELETE ================
 
-app.delete("/api/notes:id", (req, res) => {
-    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
+app.delete("/api/notes/:id", (req, res) => {
+    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let delID = req.params.id;
     let newID = 0;
     archNotes = archNotes.filter(target => {
@@ -63,7 +63,7 @@ app.delete("/api/notes:id", (req, res) => {
         newID++;
     }
     fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
-    res.json(archNotes)
+    res.json(archNotes);
 })
 // ============== Listener ================
 
