@@ -2,7 +2,7 @@ const express = require('express')
 const path = require("path")
 const fs = require("fs")
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const mainDir = path.join(__dirname, "/public")
 
 app.use(express.static('public'))
@@ -11,7 +11,9 @@ app.use(express.json())
 
 
 // ======== Routes =================
-
+app.get("/", (req, res) => {
+    console.log("found me")
+})
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(mainDir, "notes.html"))
 })
@@ -64,6 +66,6 @@ app.delete("/api/notes:id", (req, res) => {
 })
 // ============== Listener ================
 
-app.listen(port, () => {
-  console.log(`listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`listening at http://localhost:${PORT}`)
 })
