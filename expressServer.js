@@ -35,6 +35,7 @@ app.get('/notes', (req, res) => {
 
 
 
+// Placed at the bottom so the wildcard doesnt trigger first
 app.get("*", (req, res) => {
     res.sendFile(path.join(mainDir, "index.html"))
 })
