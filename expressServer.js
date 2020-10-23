@@ -52,7 +52,14 @@ app.get("*", (req, res) => {
 
 app.post("api/notes", (req, res) => {
     let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
-})
+    let newEntry = req.body
+    let thisID = (archNotes.length).toString()
+    newEntry.id = thisID
+    archNotes.push(newEntry)
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
+    res.json(archNotes)
+})  
 // ============== Listener ================
 
 app.listen(port, () => {
