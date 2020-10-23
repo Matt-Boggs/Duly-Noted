@@ -10,20 +10,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ======== Routes =================
 
 app.get('/notes', (req, res) => {
@@ -63,10 +49,21 @@ app.post("api/notes", (req, res) => {
 //  ======== DELETE ================
 
 app.delete("/api/notes:id", (req, res) => {
-    
+    let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
+    let delID = req.params.id
+    let newID = 0
+    archNotes = archNotes.filter(target => {
+        return target.id != delID
+    })
+    for (target of archNotes){
+        target.id = newID.toString()
+        newID++
+    }
+    fs.writeFileSync("./db/db.json", JSON.stringify(archNotes))
+    res.json(archNotes)
 })
 // ============== Listener ================
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`listening at http://localhost:${port}`)
 })
