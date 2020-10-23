@@ -9,7 +9,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-
 // ======== Routes =================
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(mainDir, "notes.html"));
@@ -21,13 +20,8 @@ app.get("/api/notes", (req, res) => {
 
 app.get("/api/notes/:id", (req, res) => {
     let archNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    console.log(archNotes);
-    res.json(archNotes[Number(req.params.id)]);
+    res.json(archNotes[req.params.id]);
 })
-
-
-
-
 
 // Placed at the bottom so the wildcard doesnt trigger first
 app.get("*", (req, res) => {
@@ -46,6 +40,7 @@ app.post("/api/notes", (req, res) => {
     fs.writeFileSync("./db/db.json", JSON.stringify(archNotes));
     res.json(archNotes);
 })  
+
 //  ======== DELETE ================
 
 app.delete("/api/notes/:id", (req, res) => {
