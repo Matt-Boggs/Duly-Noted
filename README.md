@@ -20,6 +20,9 @@ This application allows the user to input and save notes, using express to make 
 ### Usage:
  This is a step by step guided process for making a readme, answer all the questions presented, and at the end you will have a readme generated for you with the information that was entered!
 
+#### In Use:
+![Notes](HomeworkActual\Duly-Noted\public\assets\images\notetaking.gif)
+
 
 ### License:
  This project is licensed under the MIT license.
