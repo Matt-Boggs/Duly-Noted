@@ -6,12 +6,7 @@
 This application allows the user to input and save notes, using express to make a server
 
 ## Table of Contents 
- 1.[Installation](#Installation) 
- 2.[Usage](#Usage) 
- 3.[License](#License) 
- 4.[Contributing](#Contributing) 
- 5.[Tests](#Tests) 
- 6.[Questions](#Questions)
+ [Installation](#Installation) || [Usage](#Usage) || [License](#License) || [Contributing](#Contributing) || [Tests](#Tests) || [Questions](#Questions)
 
 ### Installation:
 Application is hosted on heroku, so there is no need to install
